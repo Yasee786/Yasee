@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Will You Be My Valentine?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff4e8d, #ff9ecb);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+      text-align: center;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 90%;
+    }
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1em;
+      cursor: pointer;
+      margin: 10px;
+      transition: 0.3s;
+    }
+    .yes {
+      background: #00e676;
+      color: #004d26;
+      font-weight: bold;
+    }
+    .yes:hover {
+      transform: scale(1.1);
+    }
+    .no {
+      background: #ff1744;
+      color: #fff;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 0.9em;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Hey Achu 💖</h1>
+    <p>
+      Asna, from the moment you came into my life,<br>
+      everything feels brighter and warmer ✨<br><br>
+      Yaseen has one very important question for you…
+    </p>
+    <h2>Will you be my Valentine? 💝</h2>
+
+    <button class="yes" onclick="yesClicked()">YES 💕</button>
+    <button class="no" onclick="alert('Take your time 😌💗')">Not yet 🙈</button>
+
+    <footer>
+      Made with ❤️ by Yaseen
+    </footer>
+  </div>
+
+  <script>
+    function yesClicked() {
+      window.location.href =
+        "https://wa.me/?text=" +
+        encodeURIComponent("She said YES 💖");
+    }
+  </script>
+</body>
+</html>
