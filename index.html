@@ -2,88 +2,189 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Will You Be My Valentine?</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Achu 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <style>
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #ff4e8d, #ff9ecb);
+      height: 100vh;
+      background: linear-gradient(135deg, #ff5fa2, #ffc1dc);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      overflow: hidden;
       color: #fff;
       text-align: center;
     }
+
     .card {
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(12px);
       padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      max-width: 400px;
+      border-radius: 25px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+      max-width: 420px;
       width: 90%;
+      z-index: 2;
     }
+
     h1 {
-      font-size: 2.2em;
+      font-size: 2.3em;
       margin-bottom: 10px;
     }
+
     p {
       font-size: 1.1em;
+      line-height: 1.5;
       margin-bottom: 20px;
     }
+
+    h2 {
+      margin: 20px 0;
+      font-size: 1.6em;
+    }
+
+    .buttons {
+      position: relative;
+      height: 80px;
+    }
+
     button {
-      padding: 12px 25px;
+      padding: 14px 28px;
       border: none;
-      border-radius: 30px;
+      border-radius: 40px;
       font-size: 1.1em;
       cursor: pointer;
-      margin: 10px;
       transition: 0.3s;
+      position: absolute;
     }
+
     .yes {
       background: #00e676;
       color: #004d26;
+      left: 50%;
+      transform: translateX(-120%);
       font-weight: bold;
     }
+
     .yes:hover {
-      transform: scale(1.1);
+      transform: translateX(-120%) scale(1.15);
     }
+
     .no {
       background: #ff1744;
-      color: #fff;
+      color: white;
+      left: 50%;
+      transform: translateX(20%);
     }
+
     footer {
       margin-top: 20px;
       font-size: 0.9em;
       opacity: 0.9;
     }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
-<body>
+
+<body onclick="startMusic()">
+
+  <!-- Music -->
+  <audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/02/28/audio_35e4d7d3df.mp3" type="audio/mpeg">
+  </audio>
+
   <div class="card">
     <h1>Hey Achu 💖</h1>
+
     <p>
       Asna, from the moment you came into my life,<br>
-      everything feels brighter and warmer ✨<br><br>
-      Yaseen has one very important question for you…
+      everything feels softer, brighter, warmer ✨<br><br>
+      Yaseen has been holding one question in his heart…
     </p>
+
     <h2>Will you be my Valentine? 💝</h2>
 
-    <button class="yes" onclick="yesClicked()">YES 💕</button>
-    <button class="no" onclick="alert('Take your time 😌💗')">Not yet 🙈</button>
+    <div class="buttons">
+      <button class="yes" onclick="yesClicked()">YES 💕</button>
+      <button class="no" onmouseover="moveNo()">Not yet 🙈</button>
+    </div>
 
     <footer>
-      Made with ❤️ by Yaseen
+      Made with ❤️ only for you — Yaseen
     </footer>
   </div>
 
   <script>
-    function yesClicked() {
-      window.location.href =
-        "https://wa.me/?text=" +
-        encodeURIComponent("She said YES 💖");
+    let musicStarted = false;
+
+    function startMusic() {
+      if (!musicStarted) {
+        document.getElementById("bgMusic").play();
+        musicStarted = true;
+      }
     }
+
+    function moveNo() {
+      const btn = document.querySelector('.no');
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 100 - 50;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    function yesClicked() {
+      // confetti effect
+      for (let i = 0; i < 40; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+      }
+
+      setTimeout(() => {
+        window.location.href =
+          "https://wa.me/?text=" +
+          encodeURIComponent("Achu said YES 💖💍");
+      }, 1200);
+    }
+
+    // continuous floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💗";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 5 + Math.random() * 4 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }, 400);
   </script>
+
 </body>
 </html>
